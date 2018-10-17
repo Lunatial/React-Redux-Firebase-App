@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux'
 
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
@@ -13,4 +14,11 @@ const NavBar = () =>
         </div>
     </nav>;
 
-export default NavBar;
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps)(NavBar);

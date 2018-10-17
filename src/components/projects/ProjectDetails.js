@@ -16,7 +16,7 @@ const ProjectDetails = (props) => {
                         <p>{project.content}</p>
                         <div className="card-action gret lighten-4 grey-text">
                             <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
-                            <div>Random Date</div>
+                            <div>Date {String(project.createdAt)}</div>
                         </div>
                     </div>
                 </div>
