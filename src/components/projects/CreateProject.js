@@ -21,6 +21,7 @@ class CreateProject extends Component {
         e.preventDefault();
         // console.log(JSON.stringify(this.state, null, 4))
         this.props.createProject(this.state)
+        this.props.history.push('/');
     };
 
     render() {
@@ -60,6 +61,6 @@ const mapDispatchToProps = dispatch => {
     return {
         createProject: (project) => dispatch(createProject(project))
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProject)
