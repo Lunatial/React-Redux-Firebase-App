@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: url("/img/fondo.jpg") center center;
+    background: url("/img/WM_bg2.jpg") center center;
     background-size: cover;
     min-height: 100%;
 }
@@ -15,6 +15,7 @@ form {
     padding: 20px;
     margin-top: 60px;
 }
+
 form button,
 form h5 {
     margin: 20px 0;
@@ -23,7 +24,7 @@ form h5 {
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
-textarea.materialize-textarea:focus:not([readonly]){
+textarea.materialize-textarea:focus:not([readonly]) {
     border-color: #ec407a;
     box-shadow: none;
 }
@@ -31,10 +32,9 @@ textarea.materialize-textarea:focus:not([readonly]){
 input[type=text]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label,
 input[type=email]:not(.browser-default):focus:not([readonly]) + label,
-input[type=password]:not(.browser-default):focus:not([readonly]) + label{
+input[type=password]:not(.browser-default):focus:not([readonly]) + label {
     color: #ec407a !important;
 }
-
 
 .link-button {
     background-color: transparent;
@@ -50,4 +50,36 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 .link-button:hover,
 .link-button:focus {
     text-decoration: none;
+}
+
+.boxShadow {
+    position: relative;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.boxShadow:before, .boxShadow:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    -moz-border-radius: 100px / 10px;
+    border-radius: 100px / 10px;
+}
+
+.boxShadow:after {
+    right: 10px;
+    left: auto;
+    -webkit-transform: skew(8deg) rotate(3deg);
+    -moz-transform: skew(8deg) rotate(3deg);
+    -ms-transform: skew(8deg) rotate(3deg);
+    -o-transform: skew(8deg) rotate(3deg);
+    transform: skew(8deg) rotate(3deg);
 }
