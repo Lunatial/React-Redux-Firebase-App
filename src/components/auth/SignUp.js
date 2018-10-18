@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom'
 import {connect} from "react-redux";
+import {signUp} from "../../store/actions/authActions";
 
 class SignIn extends Component {
     state = {
@@ -20,10 +21,11 @@ class SignIn extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(JSON.stringify(this.state, null, 4))
+        this.props.signUp(this.state)
     };
 
     render() {
-        const {auth} = this.props
+        const {auth, authError} = this.props
         if (auth.uid) {
             return <Redirect to="/"/>
         }
@@ -31,7 +33,7 @@ class SignIn extends Component {
         return (
             <div className="container">
                 <form className="white" onSubmit={this.handleSubmit}>
-                    <h5 className="grey-text text-darken-3">Sign In</h5>
+                    <h5 className="grey-text text-darken-3">Sign Up</h5>
                     <div className="input-field">
                         <label htmlFor="email">Email</label>
                         <input type="email" id="email" onChange={this.handleChange}/>
@@ -51,6 +53,9 @@ class SignIn extends Component {
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Sing Up</button>
                     </div>
+                    <div className="red-text-center">
+                        {authError ? <p>{authError}</p> : null}
+                    </div>
                 </form>
             </div>
         );
@@ -59,8 +64,15 @@ class SignIn extends Component {
 
 const mapStateTopProps = state => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        authError: state.authError
     }
 }
 
-export default connect(mapStateTopProps)(SignIn);
+const mapDispatchToProps = dispatch => {
+    return {
+        signUp: (newUser) => dispatch(signUp(newUser))
+    }
+}
+
+export default connect(mapStateTopProps, mapDispatchToProps)(SignIn);
