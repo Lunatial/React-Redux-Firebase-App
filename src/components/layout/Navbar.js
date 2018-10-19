@@ -4,32 +4,55 @@ import {connect} from 'react-redux'
 
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
+import SignedInMobilMenu from './SignedInMobilMenu'
+import SignedOutMobilMenu from './SignedOutMobilMenu'
 import appTitle from '../../assets/img/appTitle/title2.png'
+import {showMobileMenu} from "../../store/actions/navActions"
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {showMobilMenu: false};
-    }
+
+    handleShowMenu = (e) => {
+        e.preventDefault()
+        this.props.showMobileMenu(true)
+        window.document.body.style.overflow = "hidden"
+    };
+
+    handleHideMenu = (e) => {
+        e.preventDefault()
+        this.props.showMobileMenu(false)
+        window.document.body.style.overflow = "hidden"
+    };
 
     render() {
-        const {auth, profile} = this.props
+        const {auth, profile, showMobilMenu} = this.props
         const currentLinks = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks/>
+        const mobilMenu = auth.uid
+            ? <SignedInMobilMenu profile={profile} handleHideMenu={this.handleHideMenu}/>
+            : <SignedOutMobilMenu handleHideMenu={this.handleHideMenu}/>
         return (
             <nav className="nav-wrapper grey darken-3">
                 <div className="container">
                     <Link to='/' className="brand-logo">
                         <img src={appTitle} alt={"logo"} style={{maxHeight: '62px'}}/>
                     </Link>
-                    <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+                    <a href="" className="sidenav-trigger" onClick={this.handleShowMenu}>
                         <i className="material-icons">menu</i>
                     </a>
-                    <ul className="sidenav" id="mobile-demo" style={{transform: "translateX(-105%)"}}>
-                        <li><a href="sass.html">Sass</a></li>
-                        <li><a href="badges.html">Components</a></li>
-                        <li><a href="collapsible.html">Javascript</a></li>
-                        <li><a href="mobile.html">Mobile</a></li>
+
+                    {showMobilMenu && <div
+                        className="sidenav-overlay"
+                        style={{display: "block", opacity: 1}}
+                        onClick={this.handleHideMenu}>
+
+                    </div>}
+
+                    <ul className="sidenav" style={{
+                        transform: `translateX(${showMobilMenu ? '0%' : '-105%'})`,
+                        transitionDuration: '0.5s'
+                    }}>
+                        {mobilMenu}
                     </ul>
+
                     {currentLinks}
                 </div>
             </nav>
@@ -38,11 +61,17 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         auth: state.firebase.auth,
-        profile: state.firebase.profile
+        profile: state.firebase.profile,
+        showMobilMenu: state.nav.showMobilMenu
     }
 }
 
-export default connect(mapStateToProps)(NavBar)
+const mapDispatchToProps = dispatch => {
+    return {
+        showMobileMenu: (status) => dispatch(showMobileMenu(status))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
