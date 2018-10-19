@@ -7,38 +7,25 @@ import {Redirect} from 'react-router-dom'
 import Notifications from './Notification'
 import ProjectList from '../projects/ProjectList'
 
-class Dashboard extends Component {
-    // constructor(props) {
-    //     super(props);
-    //
-    //     this.state = {};
-    // }
-    //
-    // componentDidUpdate(prevProps, prevState, snapshot)
-    //     this.setState({})
-    // }
+const Dashboard = props => {
+    const {projects, auth, notifications} = props;
 
-    render() {
-        const {projects, auth , notifications} = this.props;
-        // const {projects} = this.state;
+    if (!auth.uid) {
+        return <Redirect to="/signin"/>
+    }
 
-        if (!auth.uid) {
-            return <Redirect to="/signin"/>
-        }
-
-        return (
-            <div className="dashboard container">
-                <div className="row">
-                    <div className="col s12 m6">
-                        <ProjectList projects={projects}/>
-                    </div>
-                    <div className="col s12 m5 offset-m1">
-                        <Notifications notifications={notifications}/>
-                    </div>
+    return (
+        <div className="dashboard container">
+            <div className="row">
+                <div className="col s12 m6">
+                    <ProjectList projects={projects}/>
+                </div>
+                <div className="col s12 m5 offset-m1">
+                    <Notifications notifications={notifications}/>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 const mapStateToProps = state => {
@@ -52,7 +39,7 @@ const mapStateToProps = state => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'projects', orderBy: ['createdAt', 'desc']},
-        { collection: 'notifications', limit: 3, orderBy: ['time', 'desc']}
+        {collection: 'projects', orderBy: ['createdAt', 'desc']},
+        {collection: 'notifications', limit: 3, orderBy: ['time', 'desc']}
     ])
 )(Dashboard)

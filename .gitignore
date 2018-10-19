@@ -21,4 +21,10 @@ yarn-debug.log*
 yarn-error.log*
 .idea/inspectionProfiles/
 
+/src/store/config/
+
 /src/config/
+
+/dist
+
+/functions
