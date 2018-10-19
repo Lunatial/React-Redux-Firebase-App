@@ -20,7 +20,7 @@ class NavBar extends Component {
     handleHideMenu = (e) => {
         e.preventDefault()
         this.props.showMobileMenu(false)
-        window.document.body.style.overflow = "hidden"
+        window.document.body.style.overflow = "visible"
     };
 
     render() {
