@@ -8,9 +8,19 @@ import Notifications from './Notification'
 import ProjectList from '../projects/ProjectList'
 
 class Dashboard extends Component {
+    // constructor(props) {
+    //     super(props);
+    //
+    //     this.state = {};
+    // }
+    //
+    // componentDidUpdate(prevProps, prevState, snapshot)
+    //     this.setState({})
+    // }
+
     render() {
-        // console.log(this.props);
         const {projects, auth , notifications} = this.props;
+        // const {projects} = this.state;
 
         if (!auth.uid) {
             return <Redirect to="/signin"/>

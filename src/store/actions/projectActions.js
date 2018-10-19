@@ -13,7 +13,19 @@ export const createProject = (project) => {
         }).then(() => {
             dispatch({ type: 'CREATE_PROJECT_SUCCESS', project });
         }).catch(err => {
-            dispatch({ type: 'CREATE_PROJECT_ERROR' }, err);
+            dispatch({ type: 'CREATE_PROJECT_ERROR', err,});
+        });
+    }
+};
+
+export const deleteProject = (projectId) => {
+    return (dispatch, getState, {getFirestore}) => {
+        // make async call to database
+        const firestore = getFirestore();
+        firestore.collection('projects').doc(projectId).delete().then(() => {
+            dispatch({ type: 'DELETE_PROJECT_SUCCESS', payload: projectId});
+        }).catch(err => {
+            dispatch({ type: 'DELETE_PROJECT_ERROR', err,});
         });
     }
 };
