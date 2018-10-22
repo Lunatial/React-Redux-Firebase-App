@@ -3,11 +3,11 @@ import {NavLink} from 'react-router-dom';
 
 const SignedOutMobilMenu = (props) =>
     <Fragment>
-        <li>
-            <NavLink to='/signup' onClick={props.handleHideMenu}>Signup</NavLink>
+        <li onClick={props.handleHideMenu}>
+            <NavLink to='/signup' >Signup</NavLink>
         </li>
-        <li>
-            <NavLink to='/signin' onClick={props.handleHideMenu}>Login</NavLink>
+        <li onClick={props.handleHideMenu}>
+            <NavLink to='/signin' >Login</NavLink>
         </li>
     </Fragment>
 

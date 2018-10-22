@@ -25,7 +25,9 @@ class NavBar extends Component {
 
     render() {
         const {auth, profile, showMobilMenu} = this.props
-        const currentLinks = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks/>
+        const currentLinks = auth.uid
+            ? <SignedInLinks profile={profile}/>
+            : <SignedOutLinks/>
         const mobilMenu = auth.uid
             ? <SignedInMobilMenu profile={profile} handleHideMenu={this.handleHideMenu}/>
             : <SignedOutMobilMenu handleHideMenu={this.handleHideMenu}/>

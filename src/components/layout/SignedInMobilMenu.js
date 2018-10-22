@@ -13,17 +13,17 @@ render() {
         const {handleHideMenu, profile} = this.props
     return (
         <Fragment>
-            <li>
-                <NavLink to='/create' onClick={handleHideMenu}>New Project</NavLink>
+            <li onClick={handleHideMenu}>
+                <NavLink to='/create'>New Project</NavLink>
             </li>
-            <li>
-                <a className="link-button" style={{color: 'black'}} onClick={this.onClick}>Log Out</a>
+            <li onClick={this.onClick}>
+                <a className="link-button" style={{color: 'black'}} >Log Out</a>
             </li>
-            <li>
+            <li onClick={handleHideMenu}>
                 <NavLink
                     to='/'
                     style={{color: 'pink'}}
-                    onClick={handleHideMenu}>
+                    >
                     {profile.initials}
                 </NavLink>
             </li>
