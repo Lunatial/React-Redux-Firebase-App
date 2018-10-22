@@ -19,7 +19,6 @@ const store = createStore(rootReducer,
                 useFirestoreForProfile: true,
                 userProfile: 'users',
                 attachAuthIsReady: true,
-                dispatchRemoveAction: true
             }
         ),
         reduxFirestore(fbConfig),

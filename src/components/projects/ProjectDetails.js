@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import moment from 'moment'
 
 const ProjectDetails = (props) => {
@@ -25,9 +25,7 @@ const ProjectDetails = (props) => {
                                        .then(() => props.history.push('/'))
                                }}
                          >
-                             {/*<Link to="/">*/}
                              <i className="right small material-icons">delete</i>
-                             {/*</Link>*/}
                          </span>
                         <span className="card-title">
                             {project.title}
@@ -36,7 +34,6 @@ const ProjectDetails = (props) => {
                         <div className="card-action gret lighten-4 grey-text">
                             <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
                             <div>{moment(project.createdAt.toDate()).calendar()}</div>
-                            <div>{JSON.stringify(projectIdFromURL, null, 4)}</div>
                         </div>
                     </div>
                 </div>
