@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import moment from 'moment'
 
 const ProjectDetails = (props) => {
@@ -10,18 +10,33 @@ const ProjectDetails = (props) => {
     if (!auth.uid) {
         return <Redirect to="/signin"/>
     }
+
+    const projectIdFromURL = props.location.pathname.slice(9)
+
     if (project) {
         return (
             <div className="container section project-details">
                 <div className="card z-depth-0 boxShadow">
                     <div className="card-content">
-                <span className="card-title">
-                    {project.title}
-                </span>
+                         <span style={{cursor: "pointer"}}
+                               onClick={() => {
+                                   props.firestore
+                                       .delete(`projects/${projectIdFromURL}`)
+                                       .then(() => props.history.push('/'))
+                               }}
+                         >
+                             {/*<Link to="/">*/}
+                             <i className="right small material-icons">delete</i>
+                             {/*</Link>*/}
+                         </span>
+                        <span className="card-title">
+                            {project.title}
+                        </span>
                         <p>{project.content}</p>
                         <div className="card-action gret lighten-4 grey-text">
                             <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
                             <div>{moment(project.createdAt.toDate()).calendar()}</div>
+                            <div>{JSON.stringify(projectIdFromURL, null, 4)}</div>
                         </div>
                     </div>
                 </div>
