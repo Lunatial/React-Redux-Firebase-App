@@ -21,7 +21,7 @@ exports.projectCreated = functions.firestore
 
         const project = doc.data();
         const notification = {
-            content: 'Added a new project',
+            content: `added a new project: ${project.title}`,
             user: `${project.authorFirstName} ${project.authorLastName}`,
             time: admin.firestore.FieldValue.serverTimestamp()
         }
@@ -35,7 +35,7 @@ exports.projectDeleted = functions.firestore
 
         const project = doc.data();
         const notification = {
-            content: 'Project deleted',
+            content: `deleted: ${project.title}`,
             user: `${project.authorFirstName} ${project.authorLastName}`,
             time: admin.firestore.FieldValue.serverTimestamp()
         }
