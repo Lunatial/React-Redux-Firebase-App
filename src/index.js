@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {reduxFirestore, getFirestore} from 'redux-firestore';
 import {reactReduxFirebase, getFirebase} from 'react-redux-firebase';
-import fbConfig from './store/config/fbConfig'
+import fbConfig from './config/fbConfig'
 
 import './index.css';
 import App from './App';
@@ -19,6 +19,7 @@ const store = createStore(rootReducer,
                 useFirestoreForProfile: true,
                 userProfile: 'users',
                 attachAuthIsReady: true,
+                timestampsInSnapshots: true
             }
         ),
         reduxFirestore(fbConfig),

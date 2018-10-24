@@ -21,7 +21,7 @@ render() {
             </li>
             <li onClick={handleHideMenu}>
                 <NavLink
-                    to='/'
+                    to='/profile'
                     style={{color: 'pink'}}
                     >
                     {profile.initials}
