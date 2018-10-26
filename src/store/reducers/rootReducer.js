@@ -1,7 +1,7 @@
 import authReducer from './authReducer'
 import projectReducer from './projectReducer'
 import navReducer from './navReducer'
-import profileFormReducer from './profileFormReducer'
+import profileForm from './profileFormReducer'
 import {combineReducers} from 'redux'
 import { firestoreReducer } from 'redux-firestore'
 import { firebaseReducer } from 'react-redux-firebase'
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
     nav: navReducer,
     firestore: firestoreReducer,
     firebase: firebaseReducer,
-    profileFormReducer: profileFormReducer,
+    profileForm: profileForm,
     form: formReducer
 })
 
