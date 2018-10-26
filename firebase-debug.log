@@ -1,0 +1,53 @@
+[debug] [2018-10-26T21:33:01.603Z] ----------------------------------------------------------------------
+[debug] [2018-10-26T21:33:01.606Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lamek\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2018-10-26T21:33:01.606Z] CLI Version:   5.1.1
+[debug] [2018-10-26T21:33:01.606Z] Platform:      win32
+[debug] [2018-10-26T21:33:01.606Z] Node Version:  v8.12.0
+[debug] [2018-10-26T21:33:01.607Z] Time:          Fri Oct 26 2018 23:33:01 GMT+0200 (Közép-európai nyári idő )
+[debug] [2018-10-26T21:33:01.607Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-26T21:33:01.618Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-26T21:33:01.619Z] > authorizing via signed-in user
+[debug] [2018-10-26T21:33:01.619Z] [iam] checking project react-redux-firebase-app-d50b0 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2018-10-26T21:33:01.621Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/react-redux-firebase-app-d50b0:testIamPermissions  
+
+[debug] [2018-10-26T21:33:02.657Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-26T21:33:02.658Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/react-redux-firebase-app-d50b0  
+ 
+[debug] [2018-10-26T21:33:03.013Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'react-redux-firebase-app-d50b0'...
+[info] 
+[info] i  deploying functions, hosting
+[debug] [2018-10-26T21:33:06.288Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~6.0.0",
+    "firebase-functions": "^2.0.3"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-10-26T21:33:06.290Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/react-redux-firebase-app-d50b0?view=CONSUMER_VIEW  
+ 
+[debug] [2018-10-26T21:33:06.290Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/react-redux-firebase-app-d50b0?view=CONSUMER_VIEW  
+ 
+[debug] [2018-10-26T21:33:07.934Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2018-10-26T21:33:07.979Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-26T21:33:07.980Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/react-redux-firebase-app-d50b0  
+ 
+[debug] [2018-10-26T21:33:08.967Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-26T21:33:08.968Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/417918456320:getServerAppConfig  
+ 
+[debug] [2018-10-26T21:33:09.317Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-26T21:33:09.319Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/react-redux-firebase-app-d50b0/versions  
+
