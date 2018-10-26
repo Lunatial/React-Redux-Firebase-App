@@ -15,7 +15,7 @@ const profileForm = (state = initState, action) => {
       console.log("PROFILE_UPDATE_SUCCESS", action.payload);
       return {
         ...state,
-        // currentValues: action.payload
+        currentValues: action.payload
       };
     case "PROFILE_UPDATE_FAIL":
       console.error("PROFILE_UPDATE_FAIL", action.payload);

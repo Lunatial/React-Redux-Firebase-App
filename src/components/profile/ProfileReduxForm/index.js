@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm, initialize } from "redux-form";
+import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -20,17 +20,26 @@ class ProfileForm extends React.Component {
   handleInitialize = () => {
     const { initialValues } = this.props;
     const initData = {
-      email: initialValues.email
+      email: initialValues.email,
+      displayName: initialValues.displayName,
+      photoURL: initialValues.photoURL
     };
 
     this.props.initialize(initData);
   };
 
-  render() {
-    const { handleSubmit } = this.props;
+  onFormSubmit = (values, dispatch, form) => {
+    console.log("Formvalues: ", values);
+    //   console.log(updateProfile);
+    this.props.updateProfile(values);
+  };
 
+  render() {
     return (
-      <form onSubmit={handleSubmit} className="white">
+      <form
+        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+        className="white"
+      >
         <h5 className="grey-text text-darken-3">Profile</h5>
         <div className="input-field">
           <Field
@@ -70,13 +79,11 @@ class ProfileForm extends React.Component {
   }
 }
 
-const onSubmit = (values, dispatch, form) => {
-//   console.log("Formvalues: ", values);
-//   console.log(updateProfile);
-  updateProfile(values);
-};
+const mapStateToProps = (state, ownProps) => {
+  // console.log(state)
+  // console.log(ownProps)
+  // let initialValues = {}
 
-const mapStateToProps = state => {
   return {
     initialValues: state.profileForm.initialValues
   };
@@ -86,18 +93,13 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       profileFormInit,
-      updateProfile: values => dispatch(updateProfile(values))
+      updateProfile
     },
     dispatch
   );
 };
 
-const reduxFormCreated = reduxForm({
-  form: "ProfileForm",
-  onSubmit
-})(ProfileForm);
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(reduxFormCreated);
+)(reduxForm({ form: "eventForm", enableReinitialize: true })(ProfileForm));
