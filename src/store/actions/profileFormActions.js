@@ -1,7 +1,7 @@
 export const profileFormInit = () => {
-  return async (dispatch, getState, { getFirebase, getFirestore }) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
-    var user = await firebase.auth().currentUser;
+    var user = firebase.auth().currentUser;
 
     if (user) {
       dispatch({
