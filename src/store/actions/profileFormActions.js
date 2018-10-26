@@ -22,8 +22,6 @@ export const updateProfile = values => {
     var user = firebase.auth().currentUser;
     // var newPassword = getASecureRandomPassword();
 
-    console.log(values);
-
     user
       .updateProfile({
         displayName: `${values.displayName}`,

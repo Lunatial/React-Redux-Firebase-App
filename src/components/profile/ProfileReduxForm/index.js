@@ -1,7 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
 
 import {customInput} from "./fields";
 import {required, maxLength, minLength, emailVal} from "./validation";
@@ -14,28 +13,17 @@ import {
 class ProfileForm extends React.Component {
     componentDidMount() {
         this.props.profileFormInit();
-        this.handleInitialize();
     }
 
-    handleInitialize = () => {
-        const {initialValues} = this.props;
-        const initData = {
-            email: initialValues.email,
-            displayName: initialValues.displayName,
-            photoURL: initialValues.photoURL
-        };
-
-        this.props.initialize(initData);
-    };
-
-    onFormSubmit = (values, dispatch, form) => {
+    onFormSubmit = (values) => {
         this.props.updateProfile(values);
     };
 
     render() {
+        const {message, handleSubmit, messageColor} = this.props;
         return (
             <form
-                onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+                onSubmit={handleSubmit(this.onFormSubmit)}
                 className="white"
             >
                 <h5 className="grey-text text-darken-3">Profile</h5>
@@ -69,32 +57,28 @@ class ProfileForm extends React.Component {
                     <Field label="Photo URL" name="photoURL" component={customInput}/>
                 </div>
 
-                <button type="submit" className="btn pink lighten-1 z-depth-0">
-                    OK
-                </button>
+                <div className="input-field">
+                    <button type="submit" className="btn pink lighten-1 z-depth-0">
+                        OK
+                    </button>
+                    <div className="center">{message && <p style={{color: messageColor}}>{message}</p>}</div>
+                </div>
             </form>
         );
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    // console.log(state)
-    // console.log(ownProps)
-    // let initialValues = {}
-
+const mapStateToProps = (state) => {
     return {
-        initialValues: state.profileForm.initialValues
+        initialValues: state.profileForm.initialValues,
+        message: state.profileForm.message,
+        messageColor: state.profileForm.messageColor
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators(
-        {
-            profileFormInit,
-            updateProfile
-        },
-        dispatch
-    );
+const mapDispatchToProps = {
+    profileFormInit,
+    updateProfile
 };
 
 export default connect(
