@@ -71,7 +71,7 @@ class ProfileForm extends React.Component {
 }
 
 const onSubmit = (values, dispatch, form) => {
-  console.log("Formvalues: ", values);
+//   console.log("Formvalues: ", values);
 //   console.log(updateProfile);
   updateProfile(values);
 };
