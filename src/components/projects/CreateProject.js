@@ -25,7 +25,7 @@ class CreateProject extends Component {
     };
 
     render() {
-        const {auth} = this.props
+        const {auth, history} = this.props
         if (!auth.uid) {
             return <Redirect to="/signin"/>
         }
@@ -43,7 +43,13 @@ class CreateProject extends Component {
                         <textarea className="materialize-textarea" id="content" onChange={this.handleChange}/>
                     </div>
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">Create</button>
+                        <button type="submit" className="btn pink lighten-1 z-depth-0">Create</button>
+                        <button type="button"
+                                onClick={() => history.goBack()}
+                                className="btn grey lighten-1 z-depth-0"
+                                style={{marginLeft: '1rem'}}>
+                            Go Back
+                        </button>
                     </div>
                 </form>
             </div>

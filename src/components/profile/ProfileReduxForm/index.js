@@ -20,7 +20,7 @@ class ProfileForm extends React.Component {
     };
 
     render() {
-        const {message, handleSubmit, messageColor} = this.props;
+        const {message, handleSubmit, messageColor, history} = this.props;
         return (
             <form
                 onSubmit={handleSubmit(this.onFormSubmit)}
@@ -60,6 +60,12 @@ class ProfileForm extends React.Component {
                 <div className="input-field">
                     <button type="submit" className="btn pink lighten-1 z-depth-0">
                         OK
+                    </button>
+                    <button type="button"
+                            onClick={() => history.goBack()}
+                            className="btn grey lighten-1 z-depth-0"
+                            style={{marginLeft: '1rem'}}>
+                        Go Back
                     </button>
                     <div className="center">{message && <p style={{color: messageColor}}>{message}</p>}</div>
                 </div>

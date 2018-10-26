@@ -8,14 +8,14 @@ import ProfileForm from './ProfileReduxForm'
 class Profile extends Component {
 
     render() {
-        const { auth } = this.props
+        const { auth, history } = this.props
         if (!auth.uid) {
             return <Redirect to="/" />
         }        
 
         return (
             <div className="container boxShadow">
-                <ProfileForm />
+                <ProfileForm history={history} />
             </div>
         );
     }
