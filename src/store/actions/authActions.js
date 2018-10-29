@@ -1,3 +1,5 @@
+import {toastr} from 'react-redux-toastr'
+
 export const signIn = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase();
@@ -8,6 +10,8 @@ export const signIn = (credentials) => {
             dispatch({type: 'LOG_IN_SUCCESS'});
         }).catch(err => {
             dispatch({type: 'LOG_IN_ERROR'}, err);
+            console.error(err);
+            toastr.error('Ooups!', err.message)
         });
     }
 };

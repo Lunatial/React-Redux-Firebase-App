@@ -35,6 +35,12 @@ const ProjectDetails = (props) => {
                             <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
                             <div>{moment(project.createdAt.toDate()).calendar()}</div>
                         </div>
+                        <button type="button"
+                                onClick={() => props.history.goBack()}
+                                className="btn grey lighten-1 z-depth-0"
+                                style={{marginLeft: '1rem'}}>
+                            Go Back
+                        </button>
                     </div>
                 </div>
             </div>
