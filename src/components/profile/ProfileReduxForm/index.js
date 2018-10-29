@@ -20,7 +20,7 @@ class ProfileForm extends React.Component {
     };
 
     render() {
-        const {message, handleSubmit, messageColor, history} = this.props;
+        const {handleSubmit, history} = this.props;
         return (
             <form
                 onSubmit={handleSubmit(this.onFormSubmit)}
@@ -67,7 +67,6 @@ class ProfileForm extends React.Component {
                             style={{marginLeft: '1rem'}}>
                         Go Back
                     </button>
-                    <div className="center">{message && <p style={{color: messageColor}}>{message}</p>}</div>
                 </div>
             </form>
         );
@@ -76,9 +75,7 @@ class ProfileForm extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        initialValues: state.profileForm.initialValues,
-        message: state.profileForm.message,
-        messageColor: state.profileForm.messageColor
+        initialValues: state.profileForm.initialValues
     };
 };
 

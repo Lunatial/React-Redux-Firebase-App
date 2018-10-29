@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import {createStore, applyMiddleware, compose} from 'redux';
+import ReduxToastr from "react-redux-toastr";
+import "react-redux-toastr/lib/css/react-redux-toastr.min.css"
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {reduxFirestore, getFirestore} from 'redux-firestore';
@@ -30,7 +32,14 @@ const store = createStore(rootReducer,
 store.firebaseAuthIsReady.then(() => {
     ReactDOM.render(
         <Provider store={store}>
-            <App/>
+            <Fragment>
+                <ReduxToastr
+                    position="top-right"
+                    transitionIn="fadeIn"
+                    transitionOut="fadeOut"
+                />
+                <App/>
+            </Fragment>
         </Provider>, document.getElementById('root'));
 });
 
